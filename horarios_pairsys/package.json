@@ -4,14 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "deploy": "vite build && copy dist\\index.html dist\\404.html && gh-pages -d dist"
-},
-
-
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && copy dist\\index.html dist\\404.html && gh-pages -d dist"
+  },
   "dependencies": {
+    "@supabase/supabase-js": "^2.58.0",
     "framer-motion": "^12.23.22",
     "react": "^19.1.1",
     "react-clock": "^6.0.0",
