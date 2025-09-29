@@ -1,7 +1,5 @@
 import { useState } from "react";
-import TimePicker from "react-time-picker";
-import "react-time-picker/dist/TimePicker.css";
-import "react-clock/dist/Clock.css";
+import TimeSelector from "../components/TimeSelector";
 
 const diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
 
@@ -40,26 +38,8 @@ export default function InserirHorario({ horarios, setHorarios }) {
       </select>
 
       <div className="flex flex-col gap-4 mb-6">
-        <div>
-          <label className="block text-sm font-medium mb-1">Início</label>
-          <TimePicker
-            onChange={setInicio}
-            value={inicio}
-            clearIcon={null}
-            clockIcon={null}
-            className="w-full rounded bg-gray-700 text-white border border-gray-600 p-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Fim</label>
-          <TimePicker
-            onChange={setFim}
-            value={fim}
-            clearIcon={null}
-            clockIcon={null}
-            className="w-full rounded bg-gray-700 text-white border border-gray-600 p-2"
-          />
-        </div>
+        <TimeSelector label="Início" value={inicio} onChange={setInicio} />
+        <TimeSelector label="Fim" value={fim} onChange={setFim} />
       </div>
 
       <button
