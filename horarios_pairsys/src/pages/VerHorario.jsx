@@ -1,8 +1,16 @@
-import HorarioCard from "../components/HorarioCard.jsx";
+import HorarioCard from "../components/HorarioCard";
 
 const diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
 
-export default function VerHorario({ horarios }) {
+export default function VerHorario({ horarios, setHorarios }) {
+  const removerHorario = (dia, index) => {
+    setHorarios((prev) => {
+      const novos = { ...prev };
+      novos[dia] = novos[dia].filter((_, i) => i !== index);
+      return novos;
+    });
+  };
+
   return (
     <div className="w-full max-w-4xl bg-gray-800 p-8 rounded-2xl shadow-xl">
       <h2 className="text-2xl font-bold text-center text-green-400 mb-6">
@@ -11,7 +19,12 @@ export default function VerHorario({ horarios }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {diasSemana.map((dia) => (
-          <HorarioCard key={dia} dia={dia} lista={horarios[dia] || []} />
+          <HorarioCard
+            key={dia}
+            dia={dia}
+            lista={horarios[dia] || []}
+            onRemove={removerHorario}
+          />
         ))}
       </div>
     </div>

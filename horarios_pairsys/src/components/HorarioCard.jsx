@@ -1,4 +1,4 @@
-export default function HorarioCard({ dia, lista }) {
+export default function HorarioCard({ dia, lista, onRemove }) {
   return (
     <div className="bg-gray-700 p-4 rounded-lg shadow-md hover:shadow-green-500/30 transition">
       <h3 className="text-lg font-bold text-green-300 mb-2">{dia}</h3>
@@ -9,9 +9,18 @@ export default function HorarioCard({ dia, lista }) {
           {lista.map((h, i) => (
             <li
               key={i}
-              className="bg-green-500/20 text-green-200 px-3 py-1 rounded text-sm"
+              className="bg-green-500/20 text-green-200 px-3 py-1 rounded text-sm flex justify-between items-center"
             >
-              {h.inicio} - {h.fim}
+              <span>
+                {h.inicio} - {h.fim}
+              </span>
+              <button
+                onClick={() => onRemove(dia, i)}
+                className="ml-2 text-red-400 hover:text-red-600 font-bold"
+                title="Remover horário"
+              >
+                ✕
+              </button>
             </li>
           ))}
         </ul>

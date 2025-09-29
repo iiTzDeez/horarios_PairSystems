@@ -25,9 +25,9 @@ export default function App() {
             path="/"
             element={<InserirHorario horarios={horarios} setHorarios={setHorarios} />}
           />
-          <Route path="/ver" element={<VerHorario horarios={horarios} />} />
+          <Route path="/ver" element={<VerHorario horarios={horarios} setHorarios={setHorarios} />} />
+          <Route path="/" element={<VerHorario horarios={horarios} setHorarios={setHorarios} />} />
 
-          <Route path="/" element={<VerHorario horarios={horarios} />} />
         </Routes>
       </div>
     </div>

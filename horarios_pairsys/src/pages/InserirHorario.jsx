@@ -9,14 +9,29 @@ export default function InserirHorario({ horarios, setHorarios }) {
   const [fim, setFim] = useState("19:00");
 
   const adicionarHorario = () => {
-    if (!inicio || !fim) return;
-    setHorarios((prev) => ({
+  if (!inicio || !fim) return;
+
+  setHorarios((prev) => {
+    const atuais = prev[dia] || [];
+
+    // evitar duplicados no mesmo dia
+    const existe = atuais.some((h) => h.inicio === inicio && h.fim === fim);
+    if (existe) return prev;
+
+    return {
       ...prev,
-      [dia]: [...(prev[dia] || []), { inicio, fim }],
-    }));
-    setInicio("15:00");
-    setFim("19:00");
-  };
+      [dia]: [...atuais, { inicio, fim }],
+    };
+  });
+
+  // ❌ antes: reset para 15:00-19:00 (bug)
+  // setInicio("15:00");
+  // setFim("19:00");
+
+  // ✅ agora: mantém os valores escolhidos
+};
+
+
 
   return (
     <div className="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
